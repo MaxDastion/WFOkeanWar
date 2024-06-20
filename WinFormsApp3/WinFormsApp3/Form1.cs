@@ -1,4 +1,6 @@
-﻿namespace WinFormsApp3
+﻿using System.DirectoryServices.ActiveDirectory;
+
+namespace WinFormsApp3
 {
 
 
@@ -6,7 +8,7 @@
     public partial class Form1 : Form
     {
 
-        Func func = new Func();
+        ShipsPlacemant func = new ShipsPlacemant();
         public Form1()
         {
             InitializeComponent();
@@ -36,8 +38,6 @@
                     FourthShip ship = new FourthShip();
                     func.ships.Add(ship);
                 }
-
-
             }
 
         }
@@ -51,21 +51,24 @@
             {
                 Control c = tableLayoutPanel3.GetControlFromPosition(point.X, point.Y);
                 c.BackColor = Color.Black;
+
+                if (func.indexShipa == 10)
+                {
+                    foreach (Button item in tableLayoutPanel3.Controls)
+                    {
+                        item.Enabled = false;
+                    }
+                }
             }
-        }
-        void Smouth(object sende, EventArgs e)
-        {
-
-
-        }
+        }      
     }
 
 
 
-    class Func
+    class ShipsPlacemant
     {
         public List<Ship> ships = new List<Ship>();
-        private int indexShipa = 0;
+        public int indexShipa = 0;
 
         public bool FN(Point point)
         {

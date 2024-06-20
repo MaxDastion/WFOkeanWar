@@ -1,38 +1,38 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows7.0": {}
+    "net7.0-windows7.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": []
+    "net7.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\zxas\\.nuget\\packages\\": {}
+    "C:\\Users\\Студент.TOP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
+      "projectUniqueName": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
       "projectName": "WinFormsApp3",
-      "projectPath": "F:\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
-      "packagesPath": "C:\\Users\\zxas\\.nuget\\packages\\",
-      "outputPath": "F:\\WinFormsApp3\\WinFormsApp3\\obj\\",
+      "projectPath": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
+      "packagesPath": "C:\\Users\\Студент.TOP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\zxas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Студент.TOP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0-windows"
+        "net7.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0-windows7.0": {
-          "targetAlias": "net8.0-windows",
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
           "projectReferences": {}
         }
       },
@@ -40,16 +40,11 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
-      "net8.0-windows7.0": {
-        "targetAlias": "net8.0-windows",
+      "net7.0-windows7.0": {
+        "targetAlias": "net7.0-windows",
         "imports": [
           "net461",
           "net462",
@@ -69,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
