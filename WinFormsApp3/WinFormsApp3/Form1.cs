@@ -6,7 +6,7 @@
     public partial class Form1 : Form
     {
 
-            Func func = new Func();
+        Func func = new Func();
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@
                     DoubleShip ship = new DoubleShip();
                     func.ships.Add(ship);
                 }
-                else if (i <= 9 && i >= 7)
+                else if (i < 9 && i >= 7)
                 {
                     TripleShip ship = new TripleShip();
                     func.ships.Add(ship);
@@ -42,11 +42,16 @@
 
         }
 
-        void Rempfn(object sende, EventArgs e) {
+        void Rempfn(object sende, EventArgs e)
+        {
             Point point = new Point();
-          point.X = tableLayoutPanel3.GetColumn((Control)sende);
+            point.X = tableLayoutPanel3.GetColumn((Control)sende);
             point.Y = tableLayoutPanel3.GetRow((Control)sende);
-            func.FN(point);
+            if (func.FN(point))
+            {
+                Control c = tableLayoutPanel3.GetControlFromPosition(point.X, point.Y);
+                c.BackColor = Color.Black;
+            }
         }
         void Smouth(object sende, EventArgs e)
         {
@@ -62,164 +67,138 @@
         public List<Ship> ships = new List<Ship>();
         private int indexShipa = 0;
 
-
-
-
-        public void FN(Point point)
+        public bool FN(Point point)
         {
 
-            if (ships[indexShipa].count == 1)
+            if (ships[indexShipa].buttons.Count == 0)
             {
                 ships[indexShipa].buttons.Add(point);
-                MessageBox.Show("This dileshes");
             }
             else if (check(point))
             {
-                if (ships[indexShipa].count >= 2)
+                if (ships[indexShipa].count > 2)
                 {
-                    for (int f = 0; f < indexShipa; f++)
+                    if (ships[indexShipa].buttons.Count == 1)
                     {
-                        if (ships[f].count == 1)
+                        for (int i = 0; i < ships[indexShipa].buttons.Count; i++)
                         {
-                            for (int i = 0; i < ships[f].count; i++)
+                            if ((point.X == ships[indexShipa].buttons[i].X + 1) && (point.Y == ships[indexShipa].buttons[i].Y))
                             {
-                                if ((point.X+1 == ships[f].buttons[i].X) && (point.Y == ships[f].buttons[i].Y))
-                                {
-                                    ships[indexShipa].direction = Ship.ShipDirection.Horizontal; break;continue;
-                                }
-                                if ((point.X-1 == ships[f].buttons[i].X) && (point.Y == ships[f].buttons[i].Y))
-                                {
-                                    ships[indexShipa].direction = Ship.ShipDirection.Horizontal; break;continue;
-                                }
-                                if ((point.X == ships[f].buttons[i].X) && (point.Y+1 == ships[f].buttons[i].Y))
-                                {
-                                    ships[indexShipa].direction = Ship.ShipDirection.Vertical; break;continue;
-                                }
-                                if ((point.X == ships[f].buttons[i].X) && (point.Y-1 == ships[f].buttons[i].Y))
-                                {
-                                    ships[indexShipa].direction = Ship.ShipDirection.Vertical; break;continue;
-                                }
+                                ships[indexShipa].direction = Ship.ShipDirection.Horizontal; break;
+                            }
+                            if ((point.X == ships[indexShipa].buttons[i].X - 1) && (point.Y == ships[indexShipa].buttons[i].Y))
+                            {
+                                ships[indexShipa].direction = Ship.ShipDirection.Horizontal; break;
+
+                            }
+                            if ((point.X == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y - 1))
+                            {
+                                ships[indexShipa].direction = Ship.ShipDirection.Vertical; break;
+                            }
+                            if ((point.X == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y + 1))
+                            {
+                                ships[indexShipa].direction = Ship.ShipDirection.Vertical; break;
                             }
                         }
                     }
-                            MessageBox.Show("Im ok comrads))");
-                }
-                else
-                {
-                    if (!checkDirection(point))
+                    else
                     {
-                        MessageBox.Show("Fuck you");
-                    }
+                        if (checkDirection(point))
+                        {
 
+                        }
+                        else
+                        {
+                            MessageBox.Show("Вы ввели неверную позицию");
+                            return false;
+                        }
+                    }
                 }
-                
                 ships[indexShipa].buttons.Add(point);
             }
             else
             {
-                MessageBox.Show("Cold down");
+                MessageBox.Show("Вы ввели неверную позицию2");
+                return false;
             }
 
 
 
             if (ships[indexShipa].buttons.Count == ships[indexShipa].count)
             {
-                MessageBox.Show(":)");
+                MessageBox.Show("Корабль успешно установлен");
                 indexShipa++;
                 if (indexShipa >= ships.Count)
                 {
-                    return;
+                    return true;
                 }
             }
-
-
-
+            return true;
         }
 
         public bool checkDirection(Point point)
         {
-            for (int f = 0; f < indexShipa; f++)
+
+            if (ships[indexShipa].direction == Ship.ShipDirection.Vertical)
             {
-
-
-                if (ships[f].direction == Ship.ShipDirection.Vertical)
+                for (int i = 0; i < ships[indexShipa].buttons.Count; i++)
                 {
-                    for (int i = 0; i < ships[f].buttons.Count; i++)
-                    {
 
-                        if ((point.X == ships[f].buttons[i].X) && (point.Y+1 == ships[f].buttons[i].Y))
-                        {
-                            return true;
-                        }
-                        if ((point.X == ships[f].buttons[i].X) && (point.Y-1 == ships[f].buttons[i].Y))
-                        {
-                            return true;
-                        }
-                        return false;
+                    if ((point.X == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y + 1))
+                    {
+                        return true;
                     }
-                }
-                else
-                {
-                    for (int i = 0; i < ships[f].buttons.Count; i++)
+                    if ((point.X == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y - 1))
                     {
-
-
-                        if ((point.X+1 == ships[f].buttons[i].X) && (point.Y == ships[f].buttons[i].Y))
-                        {
-                            return true;
-                        }
-                        if ((point.X-1 == ships[f].buttons[i].X) && (point.Y == ships[f].buttons[i].Y))
-                        {
-                            return true;
-                        }
-                        return false;
+                        return true;
                     }
                 }
             }
-                return false;
-            
+            else
+            {
+                for (int i = 0; i < ships[indexShipa].buttons.Count; i++)
+                {
+
+
+                    if ((point.X + 1 == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y))
+                    {
+                        return true;
+                    }
+                    if ((point.X - 1 == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y))
+                    {
+                        return true;
+                    }
+
+                }
+            }
+            return false;
+
         }
 
         public bool check(Point point)
         {
-            int temp = 0;
-            for (int f = 0; f < indexShipa; f++)
+            for (int i = 0; i < ships[indexShipa].buttons.Count; i++)
             {
-
-
-                for (int i = 0; i < ships[f].buttons.Count; i++)
-                {
-                    if ((point.X+1 != ships[f].buttons[i].X) && (point.Y != ships[f].buttons[i].Y))
-                    {
-                        temp++;
-                    }
-                    if ((point.X-1 != ships[f].buttons[i].X) && (point.Y != ships[f].buttons[i].Y))
-                    {
-                        temp++;
-                    }
-                    if ((point.X != ships[f].buttons[i].X) && (point.Y + 1 != ships[f].buttons[i].Y))
-                    {
-
-                        temp++;
-                    }
-                    if ((point.X != ships[f].buttons[i].X) && (point.Y - 1 != ships[f].buttons[i].Y))
-                    {
-                            temp++;
-                    }
-                }
-                if (temp != 4)
+                if ((point.X + 1 == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y))
                 {
                     return true;
                 }
-                else
+                if ((point.X - 1 == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y))
                 {
-                    return false;
+                    return true;
                 }
-
+                if ((point.X == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y + 1))
+                {
+                    return true;
+                }
+                if ((point.X == ships[indexShipa].buttons[i].X) && (point.Y == ships[indexShipa].buttons[i].Y - 1))
+                {
+                    return true;
+                }
             }
+
+
             return false;
-
-
         }
     }
 
@@ -263,5 +242,5 @@
     #endregion
 
 
-    
+
 }
