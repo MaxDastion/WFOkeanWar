@@ -49,9 +49,9 @@ namespace WinFormsApp3
             point.Y = tableLayoutPanel3.GetRow((Control)sende);
             if (func.FN(point))
             {
-                Control c = tableLayoutPanel3.GetControlFromPosition(point.X, point.Y);
+                Button c = (Button)tableLayoutPanel3.GetControlFromPosition(point.X, point.Y);
                 c.BackColor = Color.Black;
-
+                c.Enable = false;
                 if (func.indexShipa == 10)
                 {
                     foreach (Button item in tableLayoutPanel3.Controls)
