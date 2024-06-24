@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {}
+    "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {
+    "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
+        "projectUniqueName": "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
         "projectName": "WinFormsApp3",
-        "projectPath": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
-        "packagesPath": "C:\\Users\\Студент.TOP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\obj\\",
+        "projectPath": "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
+        "packagesPath": "C:\\Users\\zxas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Студент.TOP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\zxas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +34,22 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -50,6 +61,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.19, 7.0.19]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.19, 7.0.19]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.19, 7.0.19]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.19, 7.0.19]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -58,7 +87,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

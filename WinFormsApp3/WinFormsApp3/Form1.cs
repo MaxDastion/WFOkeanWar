@@ -1,6 +1,7 @@
 ﻿using System.DirectoryServices.ActiveDirectory;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace WinFormsApp3
@@ -96,6 +97,33 @@ namespace WinFormsApp3
                 stream.WriteAsync(bytee);
             }
 
+        }
+
+        public async void  PutServer(string server, int port)
+        {
+            TcpClient tcpClient = new TcpClient();
+           
+            
+                await tcpClient.ConnectAsync(server, port);
+            using (NetworkStream stream = tcpClient.GetStream())
+            {
+                string json = string.Empty;
+                foreach (Ship item in func.ships)
+                {
+                    foreach (Point item1 in item.buttons)
+                    {
+
+                        json = JsonSerializer.Serialize(item1);
+                    }
+
+                }
+                byte[] data = Encoding.UTF8.GetBytes(json);
+
+                await stream.WriteAsync(data, 0, data.Length);
+
+
+            }
+            
         }
 
     }
