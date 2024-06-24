@@ -1,4 +1,7 @@
 ﻿using System.DirectoryServices.ActiveDirectory;
+using System.Net.Sockets;
+using System.Text;
+using System.Windows.Forms;
 
 namespace WinFormsApp3
 {
@@ -51,7 +54,7 @@ namespace WinFormsApp3
             {
                 Button c = (Button)tableLayoutPanel3.GetControlFromPosition(point.X, point.Y);
                 c.BackColor = Color.Black;
-                c.Enable = false;
+                c.Enabled = false;
                 if (func.indexShipa == 10)
                 {
                     foreach (Button item in tableLayoutPanel3.Controls)
@@ -60,8 +63,45 @@ namespace WinFormsApp3
                     }
                 }
             }
-        }      
+        }
+
+        public void EnemyMove(TcpClient client)
+        {
+            var stream = client.GetStream();
+            List<byte> bytes = new List<byte>();
+            int bytesRead = 0;
+
+            while ((bytesRead = stream.ReadByte()) != '\0')
+            {
+                bytes.Add((byte)bytesRead);
+            }
+            bytes.Add((byte)'\0');
+
+            string str = Encoding.UTF8.GetString(bytes.ToArray());
+            Point point = Newtonsoft.Json.JsonConvert.DeserializeObject<Point>(str);
+
+            Button c = (Button)tableLayoutPanel3.GetControlFromPosition(point.X, point.Y);
+            bool HitOrNot = false;
+            if (c.BackColor == Color.Black)
+            {
+                HitOrNot = true;
+            }
+
+            string jsonUser = Newtonsoft.Json.JsonConvert.SerializeObject(HitOrNot);
+
+            if (jsonUser != null)
+            {
+                jsonUser += '\0';
+                byte[] bytee = Encoding.UTF8.GetBytes(jsonUser);
+                stream.WriteAsync(bytee);
+            }
+
+        }
+
     }
+
+
+
 
 
 
