@@ -13,6 +13,7 @@ namespace WinFormsApp3
     {
 
         ShipsPlacemant func = new ShipsPlacemant();
+        string server = string.Empty; int port;
         public Form1()
         {
             InitializeComponent();
@@ -43,6 +44,11 @@ namespace WinFormsApp3
                     func.ships.Add(ship);
                 }
             }
+            foreach (Button item in tableLayoutPanel2.Controls)
+            {
+                item.Enabled = false;
+                item.MouseClick += new MouseEventHandler(AttackMouseClick);
+            }
 
         }
 
@@ -62,9 +68,19 @@ namespace WinFormsApp3
                     {
                         item.Enabled = false;
                     }
+
                 }
             }
         }
+
+        void AttackMouseClick(object sende, MouseEventArgs e)
+        {
+            Point point = new Point();
+            point.X = tableLayoutPanel2.GetColumn((Control)sende);
+            point.Y = tableLayoutPanel2.GetRow((Control)sende);
+        }
+
+
 
         public void EnemyMove(TcpClient client)
         {
@@ -98,36 +114,26 @@ namespace WinFormsApp3
             }
 
         }
-
-        public async void  PutServer(string server, int port)
+        public async void PutServer()
         {
             TcpClient tcpClient = new TcpClient();
-           
-            
-                await tcpClient.ConnectAsync(server, port);
+
+
+            await tcpClient.ConnectAsync(server, port);
             using (NetworkStream stream = tcpClient.GetStream())
             {
                 string json = string.Empty;
-                foreach (Ship item in func.ships)
-                {
-                    foreach (Point item1 in item.buttons)
-                    {
-
-                        json = JsonSerializer.Serialize(item1);
-                    }
-
-                }
                 byte[] data = Encoding.UTF8.GetBytes(json);
 
                 await stream.WriteAsync(data, 0, data.Length);
 
 
             }
-            
+
         }
 
-    }
 
+    }
 
 
 
@@ -271,7 +277,12 @@ namespace WinFormsApp3
 
             return false;
         }
+
+
+
     }
+
+    
 
 
 
