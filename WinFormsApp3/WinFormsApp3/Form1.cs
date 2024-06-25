@@ -11,6 +11,7 @@ namespace WinFormsApp3
 
     public partial class Form1 : Form
     {
+            TcpClient tcpClient = new TcpClient();
 
         ShipsPlacemant func = new ShipsPlacemant();
         string server = string.Empty; int port;
@@ -114,21 +115,20 @@ namespace WinFormsApp3
             }
 
         }
-        public async void PutServer()
+        public async void PutServer(Point point)
         {
-            TcpClient tcpClient = new TcpClient();
 
 
             await tcpClient.ConnectAsync(server, port);
-            using (NetworkStream stream = tcpClient.GetStream())
-            {
-                string json = string.Empty;
-                byte[] data = Encoding.UTF8.GetBytes(json);
+            NetworkStream stream = tcpClient.GetStream();
 
-                await stream.WriteAsync(data, 0, data.Length);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(point);
+            byte[] data = Encoding.UTF8.GetBytes(json);
+
+            await stream.WriteAsync(data);
 
 
-            }
+
 
         }
 

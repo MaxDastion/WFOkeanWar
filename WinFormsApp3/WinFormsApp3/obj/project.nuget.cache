@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "eu6wWA9izpo=",
+  "dgSpecHash": "R2S++OWhxdn2Y+V3t4hDw2u6i5jTxXMpMREPMIjzXtBfchwycmUx1lCCVPlCY7baGiT/OLZzf9EB/gFVLWuuVA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
+  "projectFilePath": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWari\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\zxas\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\Студент.TOP\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Студент.TOP\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.15\\microsoft.windowsdesktop.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Студент.TOP\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.15\\microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Студент.TOP\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.15\\microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Студент.TOP\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.15\\microsoft.netcore.app.host.win-x64.7.0.15.nupkg.sha512"
   ],
   "logs": []
 }

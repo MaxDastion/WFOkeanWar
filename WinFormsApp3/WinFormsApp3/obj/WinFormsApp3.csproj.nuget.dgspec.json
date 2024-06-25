@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {}
+    "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWari\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {
+    "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWari\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
+        "projectUniqueName": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWari\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
         "projectName": "WinFormsApp3",
-        "projectPath": "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
-        "packagesPath": "C:\\Users\\zxas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zxas\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\obj\\",
+        "projectPath": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWari\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
+        "packagesPath": "C:\\Users\\Студент.TOP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Студент.TOP\\Source\\Repos\\WFOkeanWari\\WinFormsApp3\\WinFormsApp3\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\zxas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Студент.TOP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +38,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -61,6 +60,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -69,7 +86,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
