@@ -136,18 +136,18 @@ namespace WinFormsApp3
 
             string str = Encoding.UTF8.GetString(bytes.ToArray());
 
-            bool HitOrNot = Convert.ToBoolean(str);
+            bool HitOrNot = Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(str);   
 
 
             Button button = (Button)tableLayoutPanel2.GetControlFromPosition(point.X, point.Y);
             button.Enabled = false;
             if (HitOrNot == true)
             {
-                button.BackColor = Color.Black;
+                button.BackColor = Color.Red;
             }
             else
             {
-                button.BackColor = Color.Red;
+                button.BackColor = Color.LightGreen;
             }
 
             WhoMove(HitOrNot);
@@ -190,7 +190,7 @@ namespace WinFormsApp3
                 }
             }
         }
-        public void EnemyMove()
+        public async void EnemyMove()
         {
             var stream = tcpClient.GetStream();
             List<byte> bytes = new List<byte>();
@@ -210,6 +210,7 @@ namespace WinFormsApp3
             if (c.BackColor == Color.Black)
             {
                 HitOrNot = true;
+                c.BackColor = Color.Red;    
             }
             else
             {
