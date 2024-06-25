@@ -12,6 +12,8 @@ class Server
     public static async Task ProcessClient(TcpClient client)
     {
 
+        if (Clients.Count == 1) mv = true;
+        else mv = false;
         var st = client.GetStream();
         string json = Newtonsoft.Json.JsonConvert.SerializeObject(mv) + '\0';
         byte[] data = Encoding.UTF8.GetBytes(json);
@@ -40,7 +42,7 @@ class Server
                 for (int i = 0; i < Clients.Count; i++)
                 {
 
-                    if (client.Connected)
+                    if (client.Connected && (client != Clients[i]))
                     {
                         var sendMessageStream = Clients[i].GetStream();
                         _ = sendMessageStream.WriteAsync(bytes.ToArray());

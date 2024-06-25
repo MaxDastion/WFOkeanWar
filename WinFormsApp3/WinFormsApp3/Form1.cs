@@ -23,7 +23,6 @@ namespace WinFormsApp3
         {
             InitializeComponent();
             tcpClient.ConnectAsync(IPAddress.Parse("192.168.89.189"), 9010);
-            WhoMoveFirst();
 
             foreach (Button item in tableLayoutPanel3.Controls)
             {
@@ -54,10 +53,8 @@ namespace WinFormsApp3
             }
             foreach (Button item in tableLayoutPanel2.Controls)
             {
-                item.Enabled = false;
                 item.MouseClick += new MouseEventHandler(AttackMouseClick);
             }
-
         }
 
         void WhoMoveFirst()
@@ -91,6 +88,7 @@ namespace WinFormsApp3
                 {
                     item.Enabled = false;
                 }
+                EnemyMove();
             }
         }
 
@@ -110,7 +108,7 @@ namespace WinFormsApp3
                     {
                         item.Enabled = false;
                     }
-
+                    WhoMoveFirst();
                 }
             }
         }
@@ -122,7 +120,7 @@ namespace WinFormsApp3
             point.Y = tableLayoutPanel2.GetRow((Control)sende);
             NetworkStream stream = tcpClient.GetStream();
 
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(point);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(point) + '\0';
             byte[] data = Encoding.UTF8.GetBytes(json);
 
             stream.WriteAsync(data);
@@ -137,8 +135,8 @@ namespace WinFormsApp3
             bytes.Add((byte)'\0');
 
             string str = Encoding.UTF8.GetString(bytes.ToArray());
-            
-            bool HitOrNot = Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(str);
+
+            bool HitOrNot = Convert.ToBoolean(str);
 
 
             Button button = (Button)tableLayoutPanel2.GetControlFromPosition(point.X, point.Y);
@@ -152,18 +150,23 @@ namespace WinFormsApp3
                 button.BackColor = Color.Red;
             }
 
-
             WhoMove(HitOrNot);
-
-
-            
         }
+
 
 
         private void WhoMove(bool HitOrNot)
         {
             if (HitOrNot == true)
             {
+                if (move == true)
+                {
+
+                }
+                else
+                {
+                    EnemyMove();
+                }
             }
             else
             {
@@ -173,7 +176,9 @@ namespace WinFormsApp3
                     foreach (Button item in tableLayoutPanel2.Controls)
                     {
                         item.Enabled = false;
+                        
                     }
+                    EnemyMove();
                 }
                 else
                 {
@@ -185,9 +190,9 @@ namespace WinFormsApp3
                 }
             }
         }
-        public void EnemyMove(TcpClient client)
+        public void EnemyMove()
         {
-            var stream = client.GetStream();
+            var stream = tcpClient.GetStream();
             List<byte> bytes = new List<byte>();
             int bytesRead = 0;
 
@@ -206,6 +211,10 @@ namespace WinFormsApp3
             {
                 HitOrNot = true;
             }
+            else
+            {
+                c.BackColor = Color.LightGreen;
+            }
 
             string jsonUser = Newtonsoft.Json.JsonConvert.SerializeObject(HitOrNot);
 
@@ -216,9 +225,8 @@ namespace WinFormsApp3
                 stream.WriteAsync(bytee);
             }
 
+            WhoMove(HitOrNot);
         }
-        
-
 
     }
 
