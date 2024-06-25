@@ -1,5 +1,8 @@
 ﻿using System.DirectoryServices.ActiveDirectory;
+using System.IO;
+using System.Net;
 using System.Net.Sockets;
+using System.Numerics;
 using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
@@ -11,13 +14,17 @@ namespace WinFormsApp3
 
     public partial class Form1 : Form
     {
-            TcpClient tcpClient = new TcpClient();
-
+        TcpClient tcpClient = new TcpClient();
+        bool move = new bool();
+        
         ShipsPlacemant func = new ShipsPlacemant();
         string server = string.Empty; int port;
         public Form1()
         {
             InitializeComponent();
+            tcpClient.ConnectAsync(IPAddress.Parse("192.168.89.189"), 9010);
+            WhoMoveFirst();
+
             foreach (Button item in tableLayoutPanel3.Controls)
             {
                 item.MouseClick += new MouseEventHandler(Rempfn);
@@ -53,6 +60,40 @@ namespace WinFormsApp3
 
         }
 
+        void WhoMoveFirst()
+        {
+            var stream = tcpClient.GetStream();
+            List<byte> bytes = new List<byte>();
+            int bytesRead = 0;
+
+            while ((bytesRead = stream.ReadByte()) != '\0')
+            {
+                bytes.Add((byte)bytesRead);
+            }
+            bytes.Add((byte)'\0');
+
+            string str = Encoding.UTF8.GetString(bytes.ToArray());
+
+            bool nigga= Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(str);
+
+            if (nigga == true)
+            {
+                move = true;
+                foreach (Button item in tableLayoutPanel2.Controls)
+                {
+                    item.Enabled = true;
+                }
+            }
+            else
+            {
+                move = false;
+                foreach (Button item in tableLayoutPanel2.Controls)
+                {
+                    item.Enabled = false;
+                }
+            }
+        }
+
         void Rempfn(object sende, EventArgs e)
         {
             Point point = new Point();
@@ -79,10 +120,71 @@ namespace WinFormsApp3
             Point point = new Point();
             point.X = tableLayoutPanel2.GetColumn((Control)sende);
             point.Y = tableLayoutPanel2.GetRow((Control)sende);
+            NetworkStream stream = tcpClient.GetStream();
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(point);
+            byte[] data = Encoding.UTF8.GetBytes(json);
+
+            stream.WriteAsync(data);
+
+            List<byte> bytes = new List<byte>();
+            int bytesRead = 0;
+
+            while ((bytesRead = stream.ReadByte()) != '\0')
+            {
+                bytes.Add((byte)bytesRead);
+            }
+            bytes.Add((byte)'\0');
+
+            string str = Encoding.UTF8.GetString(bytes.ToArray());
+            
+            bool HitOrNot = Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(str);
+
+
+            Button button = (Button)tableLayoutPanel2.GetControlFromPosition(point.X, point.Y);
+            button.Enabled = false;
+            if (HitOrNot == true)
+            {
+                button.BackColor = Color.Black;
+            }
+            else
+            {
+                button.BackColor = Color.Red;
+            }
+
+
+            WhoMove(HitOrNot);
+
+
+            
         }
 
 
-
+        private void WhoMove(bool HitOrNot)
+        {
+            if (HitOrNot == true)
+            {
+            }
+            else
+            {
+                if (move == true)
+                {
+                    move = false;
+                    foreach (Button item in tableLayoutPanel2.Controls)
+                    {
+                        item.Enabled = false;
+                    }
+                }
+                else
+                {
+                    move = true;
+                    foreach (Button item in tableLayoutPanel2.Controls)
+                    {
+                        item.Enabled = true;
+                    }
+                }
+            }
+        }
         public void EnemyMove(TcpClient client)
         {
             var stream = client.GetStream();
@@ -115,22 +217,7 @@ namespace WinFormsApp3
             }
 
         }
-        public async void PutServer(Point point)
-        {
-
-
-            await tcpClient.ConnectAsync(server, port);
-            NetworkStream stream = tcpClient.GetStream();
-
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(point);
-            byte[] data = Encoding.UTF8.GetBytes(json);
-
-            await stream.WriteAsync(data);
-
-
-
-
-        }
+        
 
 
     }
