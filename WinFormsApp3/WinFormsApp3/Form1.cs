@@ -129,7 +129,23 @@ namespace WinFormsApp3
                 Button c = (Button)tableLayoutPanel3.GetControlFromPosition(point.X, point.Y);
                 c.BackColor = Color.Black;
                 c.Enabled = false;
-                if (func.indexShipa == 10)
+                if (func.indexShipa >= 0 && func.indexShipa <= 3)
+                {
+                    label1.Text = "Сейчас вы устанавливате единичный корабль";
+                }
+                else if (func.indexShipa >= 4 && func.indexShipa <= 6)
+                {
+                    label1.Text = "Сейчас вы устанавливате двойной корабль";
+                }
+                else if (func.indexShipa == 7 || func.indexShipa == 8)
+                {
+                    label1.Text = "Сейчас вы устанавливате тройной корабль";
+                }
+                else if (func.indexShipa == 9)
+                {
+                    label1.Text = "Сейчас вы устанавливаете четверной корабль";
+                }
+                else if (func.indexShipa == 10)
                 {
                     foreach (Button item in tableLayoutPanel3.Controls)
                     {
@@ -253,7 +269,7 @@ namespace WinFormsApp3
 
         public bool FN(Point point)
         {
-
+            
             if (ships[indexShipa].buttons.Count == 0)
             {
                 ships[indexShipa].buttons.Add(point);
