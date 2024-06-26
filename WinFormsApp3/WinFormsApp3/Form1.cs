@@ -1,4 +1,5 @@
-﻿using System.DirectoryServices.ActiveDirectory;
+﻿using System.Diagnostics.Eventing.Reader;
+using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -59,7 +60,7 @@ namespace WinFormsApp3
         }
 
 
-        private void MoveDistributor() 
+        private void MoveDistributor()
         {
             while (true)
             {
@@ -69,9 +70,9 @@ namespace WinFormsApp3
                     {
                         item.Enabled = true;
                     }
-                    break; 
+                    break;
                 }
-                else 
+                else
                 {
                     foreach (Button item in tableLayoutPanel2.Controls)
                     {
@@ -80,7 +81,7 @@ namespace WinFormsApp3
                     EnemyMove();
                 }
             }
-        
+
         }
 
 
@@ -99,7 +100,7 @@ namespace WinFormsApp3
 
             string str = Encoding.UTF8.GetString(bytes.ToArray());
 
-            bool nigga= Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(str);
+            bool nigga = Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(str);
 
             if (nigga == true)
             {
@@ -147,6 +148,7 @@ namespace WinFormsApp3
                 }
                 else if (func.indexShipa == 10)
                 {
+                    label1.Text = string.Empty;
                     foreach (Button item in tableLayoutPanel3.Controls)
                     {
                         item.Enabled = false;
@@ -182,14 +184,14 @@ namespace WinFormsApp3
 
             bool HitOrNot = Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(str);
             Button button = (Button)sende;
-            
+
             if (HitOrNot == true)
             {
                 button.BackColor = Color.Red;
             }
             else
             {
-                button.BackColor = Color.LightGreen ;
+                button.BackColor = Color.LightGreen;
             }
 
             WhoMove(HitOrNot);
@@ -202,7 +204,7 @@ namespace WinFormsApp3
         {
             if (HitOrNot == true)
             {
-            
+
             }
             else
             {
@@ -237,7 +239,7 @@ namespace WinFormsApp3
             if (c.BackColor == Color.Black)
             {
                 HitOrNot = true;
-                c.BackColor = Color.Red;    
+                c.BackColor = Color.Red;
             }
             else
             {
@@ -254,6 +256,124 @@ namespace WinFormsApp3
             }
 
             WhoMove(HitOrNot);
+        }
+
+        private void Form1_VisibleChanged(object sender, EventArgs e)
+        {
+
+        }
+        public bool checke(int indexShipa)
+        {
+            Point temp = new Point(func.ships[indexShipa].buttons[0].X - 1, func.ships[indexShipa].buttons[0].Y + 1);
+            if (func.ships[indexShipa].count == 1)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        temp.X++;
+                        if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black)
+                        {
+                            return true;
+                        }
+                        else if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black && temp != func.ships[indexShipa].buttons[0])
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+                    temp.X -= 3;
+                    temp.Y -= 1;
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= func.ships[indexShipa].count; i++)
+                {
+                    if (i == 1)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            for (int f = 0; f < 3; f++)
+                            {
+                                temp.X++;
+                                if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black)
+                                {
+                                    return true;
+                                }
+                                else if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black && temp != func.ships[indexShipa].buttons[i])
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+
+                            }
+                            temp.X -= 3;
+                            temp.Y -= 1;
+                        }
+
+                        temp.X -= 3;
+                        temp.Y -= 1;
+                    }
+                    else if (i == func.ships[indexShipa].count)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            for (int f = 0; f < 3; f++)
+                            {
+                                temp.X++;
+                                if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black)
+                                {
+                                    return true;
+                                }
+                                else if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black && temp != func.ships[indexShipa].buttons[i])
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                                temp.X -= 3;
+                                temp.Y -= 1;
+
+                            }
+                            temp.X -= 3;
+                            temp.Y -= 1;
+                        }
+                    }
+                    else
+                    {
+                        for (int f = 0; f < 3; f++)
+                        {
+                            temp.X++;
+                            if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black)
+                            {
+                                return true;
+                            }
+                            else if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black && temp != func.ships[indexShipa].buttons[i])
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        temp.X -= 3;
+                        temp.Y -= 1;
+                    }
+                }
+
+            }
+            return false;
         }
 
     }
@@ -318,7 +438,7 @@ namespace WinFormsApp3
             }
             else
             {
-                MessageBox.Show("Вы ввели неверную позицию2");
+                MessageBox.Show("Вы ввели неверную позицию 2");
                 return false;
             }
 
@@ -400,6 +520,8 @@ namespace WinFormsApp3
 
             return false;
         }
+
+        
 
 
 
