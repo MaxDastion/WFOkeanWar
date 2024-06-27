@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zxas\\source\\repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {}
+    "C:\\Users\\Студент.TOP\\Desktop\\SeaBattle\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zxas\\source\\repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {
+    "C:\\Users\\Студент.TOP\\Desktop\\SeaBattle\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zxas\\source\\repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
+        "projectUniqueName": "C:\\Users\\Студент.TOP\\Desktop\\SeaBattle\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
         "projectName": "WinFormsApp3",
-        "projectPath": "C:\\Users\\zxas\\source\\repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
-        "packagesPath": "C:\\Users\\zxas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zxas\\source\\repos\\WFOkeanWar\\WinFormsApp3\\WinFormsApp3\\obj\\",
+        "projectPath": "C:\\Users\\Студент.TOP\\Desktop\\SeaBattle\\WinFormsApp3\\WinFormsApp3\\WinFormsApp3.csproj",
+        "packagesPath": "C:\\Users\\Студент.TOP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Студент.TOP\\Desktop\\SeaBattle\\WinFormsApp3\\WinFormsApp3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\zxas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Студент.TOP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -69,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -9,18 +9,24 @@ class Server
 {
     public static bool mv = false;
     public static List<TcpClient> Clients = new List<TcpClient>();
-    public static async Task ProcessClient(TcpClient client)
+    private static Pair<bool, bool> playersReady = new Pair<bool, bool>(false, false);
+    public static async Task ProcessClient(TcpClient client, int playerCount)
     {
-
-        if (Clients.Count == 1) mv = true;
-        else mv = false;
-        var st = client.GetStream();
+       
+        if (playerCount == 1)
+        {
+            playersReady.First = true;
+            mv = true;
+        }
+        else
+        {
+            playersReady.Second = true;
+            mv = false;
+        }
+        var st1 = client.GetStream();
         string json = Newtonsoft.Json.JsonConvert.SerializeObject(mv) + '\0';
         byte[] data = Encoding.UTF8.GetBytes(json);
-        st.WriteAsync(data);
-
-
-
+        st1.WriteAsync(data);
 
         bool UserOnServer = true;
         while (UserOnServer)
@@ -70,7 +76,7 @@ class Server
 
         Random random = new Random();
         mv = Convert.ToBoolean(random.Next(0,1));
-
+        int i = 0;
         while (true)
         {
             try
@@ -80,7 +86,8 @@ class Server
                 await Console.Out.WriteLineAsync("Client connected..");
 
                 Clients.Add(tcpClient);
-                _ = Task.Run(async () => await ProcessClient(Clients[Clients.Count - 1]));
+                i += 1;
+                _ = Task.Run(async () => await ProcessClient(Clients[Clients.Count - 1], i));
 
             }
             catch (Exception)
@@ -92,3 +99,18 @@ class Server
         }
     }
 }
+
+
+public class Pair<T, U>
+{
+    public Pair()
+    {
+    }
+    public Pair(T first, U second)
+    {
+        this.First = first;
+        this.Second = second;
+    }
+    public T First { get; set; }
+    public U Second { get; set; }
+};
