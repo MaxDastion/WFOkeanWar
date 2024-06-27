@@ -56,5 +56,3 @@ C:\Users\zxas\source\repos\WFOkeanWar\WinFormsApp3\WinFormsApp3\obj\Debug\net7.0
 C:\Users\zxas\source\repos\WFOkeanWar\WinFormsApp3\WinFormsApp3\obj\Debug\net7.0-windows\ref\WinFormsApp3.dll
 C:\Users\zxas\source\repos\WFOkeanWar\WinFormsApp3\WinFormsApp3\obj\Debug\net7.0-windows\WinFormsApp3.Menu.resources
 C:\Users\zxas\source\repos\WFOkeanWar\WinFormsApp3\WinFormsApp3\obj\Debug\net7.0-windows\WinFormsApp3.Properties.Resources.resources
-C:\Users\Студент.TOP\Desktop\SeaBattle\WinFormsApp3\WinFormsApp3\obj\Debug\net7.0-windows\WinFormsApp3.Menu.resources
-C:\Users\Студент.TOP\Desktop\SeaBattle\WinFormsApp3\WinFormsApp3\obj\Debug\net7.0-windows\WinFormsApp3.Properties.Resources.resources

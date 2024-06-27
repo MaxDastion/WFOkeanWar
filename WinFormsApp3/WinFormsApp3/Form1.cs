@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.Eventing.Reader;
 using System.DirectoryServices.ActiveDirectory;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -24,7 +23,7 @@ namespace WinFormsApp3
         public Form1()
         {
             InitializeComponent();
-            tcpClient.ConnectAsync(IPAddress.Parse("192.168.89.189"), 9010);
+            tcpClient.ConnectAsync(IPAddress.Parse("192.168.0.110"), 9010);
 
             foreach (Button item in tableLayoutPanel3.Controls)
             {
@@ -89,18 +88,17 @@ namespace WinFormsApp3
 
         void WhoMoveFirst()
         {
-
-            var st = tcpClient.GetStream();
+            var stream = tcpClient.GetStream();
             List<byte> bytes = new List<byte>();
             int bytesRead = 0;
-            while ((bytesRead = st.ReadByte()) != '\0')
+
+            while ((bytesRead = stream.ReadByte()) != '\0')
             {
                 bytes.Add((byte)bytesRead);
             }
             bytes.Add((byte)'\0');
 
             string str = Encoding.UTF8.GetString(bytes.ToArray());
-
 
             bool nigga = Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(str);
 
@@ -124,21 +122,14 @@ namespace WinFormsApp3
 
         void Rempfn(object sende, EventArgs e)
         {
-            int indexShipaTemp = -1;
             Point point = new Point();
             point.X = tableLayoutPanel3.GetColumn((Control)sende);
             point.Y = tableLayoutPanel3.GetRow((Control)sende);
             if (func.FN(point))
             {
-
                 Button c = (Button)tableLayoutPanel3.GetControlFromPosition(point.X, point.Y);
                 c.BackColor = Color.Black;
                 c.Enabled = false;
-                if (indexShipaTemp != func.indexShipa - 1)
-                {
-                    indexShipaTemp = func.indexShipa - 1;
-                    checke(func.ships[indexShipaTemp]);
-                }
                 if (func.indexShipa >= 0 && func.indexShipa <= 3)
                 {
                     label1.Text = "Сейчас вы устанавливате единичный корабль";
@@ -157,6 +148,7 @@ namespace WinFormsApp3
                 }
                 else if (func.indexShipa == 10)
                 {
+                    label1.Text = string.Empty;
                     foreach (Button item in tableLayoutPanel3.Controls)
                     {
                         item.Enabled = false;
@@ -270,51 +262,118 @@ namespace WinFormsApp3
         {
 
         }
-        private void checke(Ship ship)
+        public bool checke(int indexShipa)
         {
-            int x = 20;
-            int y = 20;
-            for (int i = 0; i < ship.buttons.Count; i++)
+            Point temp = new Point(func.ships[indexShipa].buttons[0].X - 1, func.ships[indexShipa].buttons[0].Y + 1);
+            if (func.ships[indexShipa].count == 1)
             {
-                try
+                for (int i = 0; i < 3; i++)
                 {
-                    if (ship.buttons[i].X - 1 <= x)
+                    for (int j = 0; j < 3; j++)
                     {
-                        x = ship.buttons[i].X - 1;
-                    }
+                        temp.X++;
+                        if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black)
+                        {
+                            return true;
+                        }
+                        else if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black && temp != func.ships[indexShipa].buttons[0])
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
 
-                    if (ship.buttons[i].Y - 1 <= y)
-                    {
-                        y = ship.buttons[i].Y - 1;
                     }
+                    temp.X -= 3;
+                    temp.Y -= 1;
                 }
-                catch (Exception)
+            }
+            else
+            {
+                for (int i = 1; i <= func.ships[indexShipa].count; i++)
                 {
-                    continue;
-                    throw;
+                    if (i == 1)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            for (int f = 0; f < 3; f++)
+                            {
+                                temp.X++;
+                                if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black)
+                                {
+                                    return true;
+                                }
+                                else if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black && temp != func.ships[indexShipa].buttons[i])
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+
+                            }
+                            temp.X -= 3;
+                            temp.Y -= 1;
+                        }
+
+                        temp.X -= 3;
+                        temp.Y -= 1;
+                    }
+                    else if (i == func.ships[indexShipa].count)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            for (int f = 0; f < 3; f++)
+                            {
+                                temp.X++;
+                                if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black)
+                                {
+                                    return true;
+                                }
+                                else if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black && temp != func.ships[indexShipa].buttons[i])
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                                temp.X -= 3;
+                                temp.Y -= 1;
+
+                            }
+                            temp.X -= 3;
+                            temp.Y -= 1;
+                        }
+                    }
+                    else
+                    {
+                        for (int f = 0; f < 3; f++)
+                        {
+                            temp.X++;
+                            if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black)
+                            {
+                                return true;
+                            }
+                            else if (tableLayoutPanel3.GetControlFromPosition(temp.X, temp.Y).BackColor == Color.Black && temp != func.ships[indexShipa].buttons[i])
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        temp.X -= 3;
+                        temp.Y -= 1;
+                    }
                 }
 
             }
-            int xcount = 0;
-            int ycount = 0; 
-            if (ship.direction == Ship.ShipDirection.Horizontal) { ycount = 3; xcount = ship.buttons.Count + 2; }
-            else { ycount = ship.buttons.Count + 2; xcount = 3; }
-
-            for (int i = y; i < y + ycount; i++)
-            {
-                for (int j = x; j <  x + xcount; j++)
-                {
-
-                    if (j < 0 || i < 0 || j >= 10 || i >= 10 )
-                    {
-                        continue;
-                    }
-
-                    Button button = (Button)tableLayoutPanel3.GetControlFromPosition(j, i);
-                    button.Enabled = false;
-                
-                }
-            }
+            return false;
         }
 
     }
@@ -389,7 +448,6 @@ namespace WinFormsApp3
             {
                 MessageBox.Show("Корабль успешно установлен");
                 indexShipa++;
-                
                 if (indexShipa >= ships.Count)
                 {
                     return true;
