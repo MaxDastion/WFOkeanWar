@@ -23,7 +23,7 @@ namespace WinFormsApp3
         public Form1()
         {
             InitializeComponent();
-            tcpClient.ConnectAsync(IPAddress.Parse("192.168.0.110"), 9010);
+            tcpClient.ConnectAsync(IPAddress.Parse("127.0.0.1"), 9010);
 
             foreach (Button item in tableLayoutPanel3.Controls)
             {
@@ -68,7 +68,12 @@ namespace WinFormsApp3
                 {
                     foreach (Button item in tableLayoutPanel2.Controls)
                     {
-                        item.Enabled = true;
+                        if (item.BackColor != Color.Red  )
+                                if (item.BackColor != Color.LightGreen)
+                                    item.Enabled = true;
+                        
+
+                        
                     }
                     break;
                 }
@@ -107,7 +112,8 @@ namespace WinFormsApp3
                 move = true;
                 foreach (Button item in tableLayoutPanel2.Controls)
                 {
-                    item.Enabled = true;
+                    if (item.BackColor != Color.Red || item.BackColor != Color.LightGreen)
+                        item.Enabled = true;
                 }
             }
             else
@@ -194,10 +200,12 @@ namespace WinFormsApp3
             if (HitOrNot == true)
             {
                 button.BackColor = Color.Red;
+                button.Enabled= false;
             }
             else
             {
                 button.BackColor = Color.LightGreen;
+                button.Enabled = false;
             }
 
             WhoMove(HitOrNot);

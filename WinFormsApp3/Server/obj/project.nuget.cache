@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "iraRmNm1GPYkOtE4gxXWBYa3uaYrhKE06BOUnHpHSgnPtiWjxqhM4Jc93JHgPrQ06REiCAWLaYsx3wgDHFtcKg==",
+  "dgSpecHash": "TPWqsPYJVrbTFcWJK+5P8/gOymde1S5XHpx2DLq36jCRqWkW4vN1xHScxGQZJkOfYbTcO8g/bpYLPQ10GTc1tQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Студент.TOP\\Desktop\\SeaBattle\\WinFormsApp3\\Server\\Server.csproj",
+  "projectFilePath": "C:\\Users\\student\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\Server\\Server.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Студент.TOP\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\student\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

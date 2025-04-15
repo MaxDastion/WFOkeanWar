@@ -55,19 +55,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Студент.TOP\\.nuget\\packages\\": {}
+    "C:\\Users\\student\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Студент.TOP\\Desktop\\SeaBattle\\WinFormsApp3\\Server\\Server.csproj",
+      "projectUniqueName": "C:\\Users\\student\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "C:\\Users\\Студент.TOP\\Desktop\\SeaBattle\\WinFormsApp3\\Server\\Server.csproj",
-      "packagesPath": "C:\\Users\\Студент.TOP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Студент.TOP\\Desktop\\SeaBattle\\WinFormsApp3\\Server\\obj\\",
+      "projectPath": "C:\\Users\\student\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\student\\Source\\Repos\\WFOkeanWar\\WinFormsApp3\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Студент.TOP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -63,7 +63,7 @@ class Server
 
     public static async Task Main(string[] args)
     {
-        TcpListener tcpListener = new TcpListener(IPAddress.Parse("192.168.89.189"), 9010);
+        TcpListener tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 9010);
         tcpListener.Start();
 
         Console.WriteLine("Server started..");
