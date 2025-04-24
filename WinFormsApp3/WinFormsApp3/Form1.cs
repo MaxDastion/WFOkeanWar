@@ -79,7 +79,7 @@ namespace WinFormsApp3
             }
             else if (check(point))
             {
-                if (ships[indexShipa].count > 2)
+                if (ships[indexShipa].count >= 2)
                 {
                     if (ships[indexShipa].buttons.Count == 1)
                     {
